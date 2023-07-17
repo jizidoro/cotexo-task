@@ -18,21 +18,21 @@ public class UcValidateLogin : IUcValidateLogin
         _generateToken = generateToken;
     }
 
-    public async Task<SecurityResult> Execute(string email, string password)
+    public async Task<SecurityResult> Execute(int key, string password)
     {
         var result = await Task.Run(async () =>
         {
-            var resultPassword = _systemUserPasswordValidation.Execute(email, password);
+            var resultPassword = _systemUserPasswordValidation.Execute(key, password);
 
             if (resultPassword.Success)
             {
                 var selectedUser = resultPassword.Data!;
 
-                var roles = new List<string> { "Role" };
+                var roles = new List<string> {"Role"};
 
                 var user = new TokenUser
                 {
-                    Id = selectedUser.Id,
+                    Id = key,
                     Name = selectedUser.Name,
                     Token = "",
                     Roles = roles

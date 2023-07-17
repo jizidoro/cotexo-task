@@ -18,29 +18,33 @@ public class SystemUserPasswordValidation : ISystemUserPasswordValidation
         _passwordHasher = passwordHasher;
     }
 
-    public ISingleResult<SystemUser> Execute(string email, string password)
+    public ISingleResult<SystemUser> Execute(int key, string password)
     {
-        var usuSession = _systemUserRepository.GetByPredicate(user => user.Email == email).Result;
-        var hasUser = usuSession != null;
+        var usuSession = _systemUserRepository.GetById(key).Result;
+        var keyValidation = usuSession != null;
 
-        if (!hasUser)
-            return new SingleResult<SystemUser>(1001,
-                "Usuário ou password informados não são válidos");
-
-        var (verified, needsUpgrade) = _passwordHasher.Check(usuSession!.Password, password);
-
-        if (!verified)
+        if (keyValidation)
         {
-            return new SingleResult<SystemUser>(1001,
-                "Usuário ou password informados não são válidos");
+            var (verified, needsUpgrade) = _passwordHasher.Check(usuSession!.Password, password);
+
+            if (!verified)
+            {
+                return new SingleResult<SystemUser>(1001,
+                    "Usuário ou password informados não são válidos");
+            }
+
+            if (needsUpgrade)
+            {
+                return new SingleResult<SystemUser>(1009,
+                    "Senha precisa ser atualizada");
+            }
+
+
+            return new SingleResult<SystemUser>(usuSession);
         }
 
-        if (needsUpgrade)
-        {
-            return new SingleResult<SystemUser>(1009,
-                "Senha precisa ser atualizada");
-        }
 
-        return new SingleResult<SystemUser>(usuSession);
+        return new SingleResult<SystemUser>(1001,
+            "Usuário ou password informados não são válidos");
     }
 }

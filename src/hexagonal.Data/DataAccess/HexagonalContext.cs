@@ -22,5 +22,5 @@ public class HexagonalContext : DbContext
         modelBuilder.ApplyConfiguration(new BookConfiguration());
         modelBuilder.ApplyConfiguration(new CategoryConfiguration());
         modelBuilder.ApplyConfiguration(new SystemUserConfiguration());
-    }    
+    }
 }

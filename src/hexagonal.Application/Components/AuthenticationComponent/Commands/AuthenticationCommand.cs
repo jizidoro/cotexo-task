@@ -22,7 +22,7 @@ public class AuthenticationCommand : IAuthenticationCommand
 
     public async Task<ISingleResultDto<UserDto>> GenerateToken(AuthenticationDto dto)
     {
-        var result = await _validateLogin.Execute(dto.Email, dto.Password)
+        var result = await _validateLogin.Execute(dto.Key, dto.Password)
             .ConfigureAwait(false);
 
         if (!result.Success)

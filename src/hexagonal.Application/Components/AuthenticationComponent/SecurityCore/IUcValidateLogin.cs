@@ -4,5 +4,5 @@ namespace hexagonal.Application.Components.AuthenticationComponent.SecurityCore;
 
 public interface IUcValidateLogin
 {
-    Task<SecurityResult> Execute(string email, string password);
+    Task<SecurityResult> Execute(int key, string password);
 }

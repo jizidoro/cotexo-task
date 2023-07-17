@@ -32,5 +32,4 @@ public class BookValidation<TDto> : DtoValidation<TDto>
     {
         RuleFor(x => x.CategoryId).NotEqual(0).WithMessage("Category Id cannot be zero");
     }
-    
 }

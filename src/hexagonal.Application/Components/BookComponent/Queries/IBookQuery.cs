@@ -6,5 +6,5 @@ namespace hexagonal.Application.Components.BookComponent.Queries;
 public interface IBookQuery
 {
     Task<IListResultDto<BookDto>> GetAll();
-    Task<ISingleResultDto<BookDto>> GetByIdDefault(int id);
+    Task<ISingleResultDto<BookDto>> GetById(int id);
 }

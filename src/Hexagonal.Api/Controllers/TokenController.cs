@@ -24,8 +24,8 @@ public class TokenController : ControllerBase
 
     [HttpPost("generate-token")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(typeof(SingleResultDto<EntityDto>), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(SingleResultDto<EntityDto>),
+        StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult> GenerateToken([FromBody] AuthenticationDto dto)
     {
         try

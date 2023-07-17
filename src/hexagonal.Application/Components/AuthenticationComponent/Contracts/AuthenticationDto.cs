@@ -7,6 +7,6 @@ public class AuthenticationDto
         Password = "";
     }
 
-    public string Email { get; set; }
+    public int Key { get; set; }
     public string Password { get; set; }
 }

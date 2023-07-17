@@ -5,7 +5,6 @@ using hexagonal.Application.Bases;
 using hexagonal.Application.Components.BookComponent.Commands;
 using hexagonal.Application.Components.BookComponent.Contracts;
 using hexagonal.Application.Components.BookComponent.Queries;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
@@ -52,11 +51,11 @@ public class BookController : ControllerBase
     /// <param name="bookId"></param>
     [HttpGet("get-by-id/{bookId:int}")]
     [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Find))]
-    public async Task<IActionResult> GetById([FromRoute][Required] int bookId)
+    public async Task<IActionResult> GetById([FromRoute] [Required] int bookId)
     {
         try
         {
-            var result = await _bookQuery.GetByIdDefault(bookId).ConfigureAwait(false);
+            var result = await _bookQuery.GetById(bookId).ConfigureAwait(false);
             return StatusCode(result.Code, result);
         }
         catch (Exception e)
@@ -66,10 +65,9 @@ public class BookController : ControllerBase
         }
     }
 
-    [Authorize]
     [HttpPost("create")]
     [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Create))]
-    public async Task<IActionResult> Create([FromBody][Required] BookCreateDto dto)
+    public async Task<IActionResult> Create([FromBody] [Required] BookCreateDto dto)
     {
         try
         {
@@ -83,10 +81,9 @@ public class BookController : ControllerBase
         }
     }
 
-    [Authorize]
     [HttpPut("edit")]
     [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Edit))]
-    public async Task<IActionResult> Edit([FromBody][Required] BookEditDto dto)
+    public async Task<IActionResult> Edit([FromBody] [Required] BookEditDto dto)
     {
         try
         {
@@ -100,10 +97,9 @@ public class BookController : ControllerBase
         }
     }
 
-    [Authorize]
     [HttpDelete("delete/{bookId:int}")]
     [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Delete))]
-    public async Task<IActionResult> Delete([FromRoute][Required] int bookId)
+    public async Task<IActionResult> Delete([FromRoute] [Required] int bookId)
     {
         try
         {

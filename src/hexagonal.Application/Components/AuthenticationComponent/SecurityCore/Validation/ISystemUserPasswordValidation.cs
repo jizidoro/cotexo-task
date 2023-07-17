@@ -5,5 +5,5 @@ namespace hexagonal.Application.Components.AuthenticationComponent.SecurityCore.
 
 public interface ISystemUserPasswordValidation
 {
-    ISingleResult<SystemUser> Execute(string email, string password);
+    ISingleResult<SystemUser> Execute(int key, string password);
 }

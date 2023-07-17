@@ -1,4 +1,6 @@
 using hexagonal.Data;
+using hexagonal.Data.Bases;
+using hexagonal.Domain;
 
 namespace hexagonal.API.Modules;
 
@@ -16,6 +18,8 @@ public static class EntityRepositoryExtensions
         services.AddScoped<IBookRepository, BookRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<ISystemUserRepository, SystemUserRepository>();
+
+        services.AddScoped<IRedisRepository<Book>, RedisRepository<Book>>();
         return services;
     }
 }

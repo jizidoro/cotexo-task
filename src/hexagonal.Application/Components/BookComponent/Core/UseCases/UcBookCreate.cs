@@ -2,6 +2,7 @@
 using hexagonal.Application.Bases.Interfaces;
 using hexagonal.Application.Components.BookComponent.Core.Validations;
 using hexagonal.Data;
+using hexagonal.Data.Bases;
 using hexagonal.Domain;
 using hexagonal.Domain.Bases;
 
@@ -10,12 +11,12 @@ namespace hexagonal.Application.Components.BookComponent.Core.UseCases;
 public class UcBookCreate : UseCase, IUcBookCreate
 {
     private readonly IBookCreateValidation _bookCreateValidation;
-    private readonly IBookRepository _repository;
+    private readonly IRedisRepository<Book> _redisRepository;
 
-    public UcBookCreate(IBookCreateValidation bookCreateValidation, IBookRepository repository)
+    public UcBookCreate(IBookCreateValidation bookCreateValidation, IRedisRepository<Book> redisRepository)
     {
         _bookCreateValidation = bookCreateValidation;
-        _repository = repository;
+        _redisRepository = redisRepository;
     }
 
     public async Task<ISingleResult<Entity>> Execute(Book newRecord)
@@ -32,11 +33,11 @@ public class UcBookCreate : UseCase, IUcBookCreate
             return new ErrorResult<Entity>();
         }
 
-        await _repository.BeginTransactionAsync().ConfigureAwait(false);
-        await _repository.Add(newRecord).ConfigureAwait(false);
-        await _repository.CommitTransactionAsync().ConfigureAwait(false);
+        await _redisRepository.Add(newRecord).ConfigureAwait(false);
 
         return new CreateResult<Entity>(true,
             "");
     }
+
+    
 }
