@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<LangVersion>preview</LangVersion>
+		<NoWarn>$(NoWarn);CA1014;CA1031;CA1062;1591;CA1801;CA2252;S1128;S1481;S1075</NoWarn>
+		<Nullable>enable</Nullable>
+		<NullableReferenceTypes>true</NullableReferenceTypes>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NeutralLanguage>en</NeutralLanguage>
+		<IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+		<AnalysisMode>true</AnalysisMode>
+		<CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(RunConfiguration)' == 'Development' ">
+		<StartAction>Project</StartAction>
+		<ExternalConsole>true</ExternalConsole>
+		<EnvironmentVariables>
+			<Variable name="ASPNETCORE_ENVIRONMENT" value="Development" />
+		</EnvironmentVariables>
+		<ApplicationURL>https://localhost:5005</ApplicationURL>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(RunConfiguration)' == 'Bookion' ">
+		<StartAction>Project</StartAction>
+		<ExternalConsole>true</ExternalConsole>
+		<EnvironmentVariables>
+			<Variable name="ASPNETCORE_ENVIRONMENT" value="Bookion" />
+		</EnvironmentVariables>
+		<ApplicationURL>https://localhost:5005</ApplicationURL>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.6.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.9">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="AspNetCore.HealthChecks.UI" Version="6.0.5" />
+		<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.5" />
+		<PackageReference Include="AutoMapper" Version="12.0.1" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.9" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.9" />
+		<PackageReference Include="Microsoft.FeatureManagement" Version="2.6.1" />
+		<PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="2.6.1" />
+		<PackageReference Include="Serilog" Version="3.0.1" />
+		<PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
+		<PackageReference Include="Serilog.Settings.Configuration" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\hexagonal.Application\hexagonal.Application.csproj" />
+		<ProjectReference Include="..\hexagonal.Data\hexagonal.Data.csproj" />
+		<ProjectReference Include="..\hexagonal.Domain\hexagonal.Domain.csproj" />
+	</ItemGroup>
+
+</Project>

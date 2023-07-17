@@ -1,0 +1,51 @@
+<form>
+	<div class="row justify-content-between">
+		<div class="row col-xs-3 col-sm-auto">
+      <label class="col-xs-3 col-sm-auto" for="table-filtering-search">Search:</label>
+      <div class="row col-xs-3 col-sm-auto">
+        <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter" />
+      </div>
+		</div>
+    <div class="col-xs-3 col-sm-auto">
+      <button *ngIf="isLoggedIn" type="button" class="btn btn-success" routerLink="/add">New</button>
+    </div>
+	</div>
+</form>
+
+<div *ngIf="hasDeleteFailMessage" class="alert alert-danger" role="alert" (click)="deleteFailMessageOff()">
+  <strong>Error!</strong> {{failMessage}}
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Category</th>
+      <th scope="col">Page Count</th>
+      <th *ngIf="isLoggedIn" scope="col">Active</th>
+      <th *ngIf="isLoggedIn" scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books$ | async; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        <ngb-highlight [result]="book.title" [term]="filter.value"></ngb-highlight>
+      </td>
+      <td><ngb-highlight [result]="book.author" [term]="filter.value"></ngb-highlight></td>
+      <td><ngb-highlight [result]="book.categoryName" [term]="filter.value"></ngb-highlight></td>
+      <td>
+        <span>{{book.pageCount}}</span>
+      </td>
+      <td *ngIf="isLoggedIn">
+        <span>{{ book.isActive ? "Active" : "Inactive" }}</span>
+      </td>
+      <td>
+        <button *ngIf="isLoggedIn" type="button" class="btn btn-primary" routerLink="/books/{{ book.id }}">Edit</button>
+        <button *ngIf="isLoggedIn" type="button" class="btn btn-danger" (click)="removeBook(book.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

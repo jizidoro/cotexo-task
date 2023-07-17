@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "Livro": "Livro A",
+    "Autor": "João",
+    "categoryId": "2",
+    "TotalPaginas": "123",
+    "IsActive": "true"
+  },
+  {
+    "id": "2",
+    "Livro": "Livro B",
+    "Autor": "Manoel",
+    "categoryId": "1",
+    "TotalPaginas": "234",
+    "IsActive": "false"
+  },
+  {
+    "id": "3",
+    "Livro": "Livro C",
+    "Autor": "Pedro",
+    "categoryId": "3",
+    "TotalPaginas": "345",
+    "IsActive": "true"
+  }
+]

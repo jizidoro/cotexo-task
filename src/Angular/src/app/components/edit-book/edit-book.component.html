@@ -1,0 +1,64 @@
+<div>
+  <div class="edit-form">
+
+    <div *ngIf="hasSuccessMessage" class="alert alert-success" role="alert" (click)="successMessageOff()">
+      <strong>Success!</strong> Book was edited successfully!
+    </div>
+    <div *ngIf="hasFailMessage" class="alert alert-danger" role="alert" (click)="failMessageOff()">
+      <strong>Error!</strong>
+    </div>
+
+    <div>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentBook.title"
+          name="title"
+          required
+          [maxlength]="50"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Author</label>
+        <input
+          class="form-control"
+          id="description"
+          [(ngModel)]="currentBook.author"
+          name="description"
+          required
+          [maxlength]="50"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="currentBook.categoryId">
+          <option selected>Choose ...</option>
+          <option *ngFor="let category of bookCategories" value="{{category.id}}">{{category.name}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="pageCount">Page Count</label>
+        <input
+          class="form-control"
+          id="pageCount"
+          required
+          [(ngModel)]="currentBook.pageCount"
+          name="pageCount"
+        />
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="active" [(ngModel)]="currentBook.isActive">
+        <label class="form-check-label" for="active">Active</label>
+      </div>
+
+      <button type="button" class="btn btn-success" (click)="updateBook()">Update</button>
+    </div>
+  </div>
+</div>
