@@ -9,7 +9,7 @@ namespace hexagonal.Application.Bases;
 public class SingleResultDto<TDto> : ResultDto, ISingleResultDto<TDto>
     where TDto : Dto
 {
-    private ValidationResult validationResult;
+    private ValidationResult _validationResult;
 
     public SingleResultDto(TDto? data)
     {

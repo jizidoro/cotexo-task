@@ -3,6 +3,7 @@ using hexagonal.API.Modules.Common;
 using hexagonal.API.Modules.Common.FeatureFlags;
 using hexagonal.API.Modules.Common.Swagger;
 using hexagonal.Domain.Extensions;
+using RabbitMQ.Client;
 
 namespace hexagonal.API;
 
@@ -40,6 +41,21 @@ public sealed class Startup
 
         services.AddAutoMapperSetup();
         services.AddLogging();
+
+        
+        services.AddSingleton<IRabbitMQConnection>(sp =>
+        {
+            var factory = new ConnectionFactory()
+            {
+                HostName = Configuration["RabbitMQ:HostName"],
+                UserName = Configuration["RabbitMQ:UserName"],
+                Password = Configuration["RabbitMQ:Password"]
+            };
+
+            return new RabbitMQConnection(factory);
+        });
+
+        services.AddHostedService<BookConsumerService>();
 
         services.AddScoped<IPasswordHasher, PasswordHasher>();
         services.AddScoped<HashingOptions>();

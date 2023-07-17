@@ -21,6 +21,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hexagonal.Domain", "src\hex
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hexagonal.Tests", "tests\hexagonal.Tests\hexagonal.Tests.csproj", "{0AE98CC7-4BB4-4954-9591-BFF31EB1F1F7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sender", "Sender", "{78231E82-5A4F-4F13-8E17-083E8EF87626}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQSenderAPI", "RabbitMQSenderAPI\RabbitMQSenderAPI.csproj", "{4752D2E6-9B81-46FD-82FE-5398BC30CB57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +51,10 @@ Global
 		{0AE98CC7-4BB4-4954-9591-BFF31EB1F1F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AE98CC7-4BB4-4954-9591-BFF31EB1F1F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AE98CC7-4BB4-4954-9591-BFF31EB1F1F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4752D2E6-9B81-46FD-82FE-5398BC30CB57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4752D2E6-9B81-46FD-82FE-5398BC30CB57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4752D2E6-9B81-46FD-82FE-5398BC30CB57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4752D2E6-9B81-46FD-82FE-5398BC30CB57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +65,7 @@ Global
 		{199E0F14-664E-4785-916D-E44E11FB6617} = {E65EF8F5-5F02-499E-8F58-898A152F8D9A}
 		{3601F609-A3D1-4792-9234-57B34A31A8AF} = {198A3CA6-9D8A-4526-AC1D-3D584368E56A}
 		{0AE98CC7-4BB4-4954-9591-BFF31EB1F1F7} = {0A1B95B2-55EF-49F6-8F78-1B2CD1BB1946}
+		{4752D2E6-9B81-46FD-82FE-5398BC30CB57} = {78231E82-5A4F-4F13-8E17-083E8EF87626}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D884DEDF-67DB-4086-B5D8-2C252E894FA8}
